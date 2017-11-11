@@ -1,0 +1,16 @@
+{
+  "name": "rentomojo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "doubleA",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "angular": "1.6",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.1"
+  }
+}
