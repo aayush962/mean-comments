@@ -1,4 +1,4 @@
-# Rentomojo Assignment
+# Assignment
 
 Comment upvote downvote system implemented in MEAN.
 
