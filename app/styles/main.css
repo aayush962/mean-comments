@@ -10,6 +10,59 @@ body{
   margin: 0 auto;
 }
 
-.post-container{
+.post-container p{
   color: #333333;
+  line-height: 24px;
+}
+
+.comments-container{
+  width: 70%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.comments-container .comment-input{
+  width: 90%;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  height: 80px;
+  padding: 10px;
+}
+
+.comments-container .comment-user{
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  height: 20px;
+  padding: 10px;
+}
+
+.comment-button{
+  background-color: #b22b2b;
+  border-radius: 5px;
+  height: 40px;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.comment-box{
+  margin: 10px;
+  margin-left: 0px;
+  max-width: 60%;
+  width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.left{
+  float: left;
+  width: 60%;
+}
+
+.right{
+  padding-top: 50px;
+  float: right;
+  width: 40%;
 }

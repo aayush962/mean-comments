@@ -29,29 +29,36 @@ app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
   $scope.getComments();
 
 
-  $scope.submitComment = function(e){
-    $http({
-      method: 'POST',
-      url: '/comments',
-      headers: {
-         'Content-Type': 'application/json'
-      },
-      data: $scope.formData
-    })
-    .then(function(data){
-      console.log(data)
-      $scope.getComments();
-    })
-    .catch(function(error){
-      console.log(error)
-    });
-  }
+  $scope.submitComment = function(){
+    if($scope.formData.commentor && $scope.formData.text){
+        $http({
+          method: 'POST',
+          url: '/comments',
+          headers: {
+             'Content-Type': 'application/json'
+          },
+          data: $scope.formData
+        })
+        .then(function(data){
+          console.log(data)
+          $scope.getComments();
+        })
+        .catch(function(error){
+          console.log(error)
+        });
+        $scope.formData = {}
+        $scope.errorMessage = ''
+      } else{
+        $scope.errorMessage = 'Please fill in all the details'
+      }
 
-  $scope.commentAction = function(commentId){
+    }
+
+  $scope.commentAction = function(commentId,action){
     console.log(commentId);
     $http({
       method: 'POST',
-      url: '/comments/'+commentId+'/upvote',
+      url: '/comments/'+commentId+'/'+action,
       data: {commentor: $scope.commentor, text: $scope.commentText}
     })
     .then(function(data){

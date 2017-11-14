@@ -21,34 +21,20 @@ app.use(bodyParser.json())
 ///// API Routes
 
 //upvote a comment
-app.post('/comments/:commentId/upvote', (req, res) => {
+app.post('/comments/:commentId/:action', (req, res) => {
   const commentId = req.params.commentId;
   Comment.findById(commentId)
     .then((comment) => {
       if(!comment){
         res.status(403).json({success: false, error: 'No such comment exists'});
       } else{
-        comment.upvotes += 1;
-        comment.save()
-          .then((comment) => {
-            res.status(200).json({success: true, comment: comment});
-          });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json({success: false, error: 'Some error occured'});
-    })
-})
-
-//downvote a comment
-app.post('/comments/:commentId/downvote', (req, res) => {
-  const commentId = req.params.commentId;
-  Comment.findById(commentId)
-    .then((comment) => {
-      if(!comment){
-        res.status(403).json({success: false, error: 'No such comment exists'});
-      } else{
-        comment.downvotes += 1;
+          if(req.params.action === 'upvote'){
+            comment.upvotes += 1;
+          } else if(req.params.action === 'downvote'){
+            comment.downvotes += 1;
+          } else {
+            res.status(403).json({success: false, error: 'Please provide a valid action'})
+          }
         comment.save()
           .then((comment) => {
             res.status(200).json({success: true, comment: comment});
