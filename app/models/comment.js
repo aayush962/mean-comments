@@ -5,13 +5,18 @@ const CommentSchema = new mongoose.Schema({
   text: String,
   upvotes: Number,
   downvotes: Number,
-  popularity: Number
+  popularity: Number,
+  dateTime: Date
 })
 
+//define popularity of a comment based on upvotes and downvotes
 CommentSchema.pre('save', function(next) {
   var comment = this;
 
-  comment.popularity = comment.upvotes/comment.downvotes;
+  comment.popularity = (comment.upvotes/comment.downvotes);
+  if(!comment.dateTime){
+    comment.dateTime = new Date()
+  }
   next();
 });
 

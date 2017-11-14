@@ -6,6 +6,8 @@ app.config(function($locationProvider){
 
 app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
 
+  $scope.formData = {};
+
   //fetch comments
 
   $scope.getComments = function(){
@@ -27,24 +29,25 @@ app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
   $scope.getComments();
 
 
-  $scope.submitComment = function(){
+  $scope.submitComment = function(e){
     $http({
       method: 'POST',
       url: '/comments',
       headers: {
          'Content-Type': 'application/json'
       },
-      data: {commentor: $scope.commentor, text: $scope.commentText}
+      data: $scope.formData
     })
     .then(function(data){
       console.log(data)
+      $scope.getComments();
     })
     .catch(function(error){
       console.log(error)
     });
   }
 
-  $scope.upvoteComment = function(commentId){
+  $scope.commentAction = function(commentId){
     console.log(commentId);
     $http({
       method: 'POST',

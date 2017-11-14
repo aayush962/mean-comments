@@ -1,14 +1,15 @@
 body{
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
 }
 
 .wrapper{
-  width: 90vw;
+  width: 80vw;
   height: 100%;
   margin: 0 auto;
 }
 
-.title{
-  
+.post-container{
+  color: #333333;
 }

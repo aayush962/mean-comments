@@ -73,7 +73,7 @@ app.post('/comments', (req, res) => {
     })
 })
 
-//get initial list of comments
+//get list of comments
 app.get('/comments', (req, res) => {
   Comment.find()
     .then((comments) => {
