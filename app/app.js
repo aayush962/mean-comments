@@ -1,5 +1,6 @@
 var app = angular.module('rentomojo', []);
 
+//remove #
 app.config(function($locationProvider){
   $locationProvider.html5Mode(true);
 });
@@ -13,7 +14,7 @@ app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
   $scope.getComments = function(){
     $http({
       method: 'GET',
-      url: '/comments',
+      url: '/api/comments',
       headers: {
          'Content-Type': 'application/json'
       }
@@ -28,12 +29,12 @@ app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
 
   $scope.getComments();
 
-
+  //submit comment
   $scope.submitComment = function(){
     if($scope.formData.commentor && $scope.formData.text){
         $http({
           method: 'POST',
-          url: '/comments',
+          url: '/api/comments',
           headers: {
              'Content-Type': 'application/json'
           },
@@ -53,27 +54,12 @@ app.controller('CommentCtrl', function CommentCtrl($scope, $http) {
       }
 
     }
-
+  //upvote or downvote
   $scope.commentAction = function(commentId,action){
     console.log(commentId);
     $http({
       method: 'POST',
-      url: '/comments/'+commentId+'/'+action,
-      data: {commentor: $scope.commentor, text: $scope.commentText}
-    })
-    .then(function(data){
-      console.log(data);
-      $scope.getComments();
-    })
-    .catch(function(error){
-      console.log(error)
-    });
-  }
-
-  $scope.downvoteComment = function(commentId){
-    $http({
-      method: 'POST',
-      url: '/comments/'+commentId+'/downvote',
+      url: '/api/comments/'+commentId+'/'+action,
       data: {commentor: $scope.commentor, text: $scope.commentText}
     })
     .then(function(data){
